@@ -48,7 +48,7 @@ body {
 
 /* Khusus Background Halaman Home */
 body.home-page {
-    background-image: url('img/About Us.jpg'); 
+    background-image: url('img/about-us.jpg'); 
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
@@ -691,4 +691,5 @@ footer {
     .contact-title { font-size: 2.5rem; }
     .phone-number { font-size: 1.8rem; }
     .contact-card { padding: 30px 20px; }
+
 }
