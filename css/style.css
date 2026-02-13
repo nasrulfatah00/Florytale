@@ -48,6 +48,7 @@ body {
 
 /* Khusus Background Halaman Home */
 body.home-page {
+    /* Perhatikan '../img/' karena file css ada di dalam folder css */
     background-image: url('../img/about-us.jpg'); 
     background-size: cover;
     background-position: center;
@@ -95,6 +96,23 @@ body.window-scroll header {
     box-shadow: 0 3px 20px var(--florytale-pink-shadow);
     transition: background-color 0.4s ease, box-shadow 0.4s ease;
 }
+
+/* KHUSUS HALAMAN CONTACT: Header Absolute (Ikut Scroll) */
+body.contact-page header {
+    position: absolute; 
+    top: 0;
+    left: 0;
+}
+/* Matikan efek pink saat scroll di halaman contact */
+body.contact-page.window-scroll header {
+    background-color: transparent;
+    box-shadow: none;
+    backdrop-filter: none;
+}
+/* Pastikan icon tetap hitam walaupun discroll di halaman contact */
+body.contact-page.window-scroll .social-icons a { color: #000; }
+body.contact-page.window-scroll .drawer__btn span { background-color: #000; }
+
 
 /* =========================================================
    4. SOCIAL ICONS & MENU TRIGGER
@@ -329,15 +347,9 @@ body.drawer-visible li:nth-child(5) .nav-link { animation-delay: 0.3s; }
 .member-card.diva:hover { border-bottom: 5px solid var(--diva-red); }
 .member-card.cassie:hover { border-bottom: 5px solid var(--cassie-white); }
 
-/* Responsive Member Grid */
+/* Responsive Member Grid (Desktop) */
 @media (max-width: 992px) {
     .member-card { width: calc(33.33% - 20px); } 
-}
-@media (max-width: 768px) {
-    .member-card { width: calc(50% - 15px); } 
-}
-@media (max-width: 500px) {
-    .member-card { width: 100%; } 
 }
 
 /* =========================================================
@@ -542,46 +554,18 @@ footer {
 }
 .close-btn:hover { color: #000; }
 
-/* Responsive Mobile Modal */
-@media (max-width: 768px) {
-    .modal-content {
-        flex-direction: column; 
-        max-width: 400px;
-        height: auto;
-    }
-    .modal-left {
-        height: 350px; 
-        flex: none;
-    }
-    .modal-right {
-        padding: 30px 20px;
-    }
-    .modal-stats {
-        padding-left: 0;
-        text-align: center; 
-    }
-    .stat-item { justify-content: center; }
-    .stat-label { width: auto; margin-right: 10px; }
-    
-    /* Responsive Header & Nav */
-    .header { padding: 0 20px; }
-    .nav-link { font-size: 1.8rem; }
-    .about-content-wrapper { flex-direction: column; }
-    .social-icons { display: none; } 
-}
-
 /* =========================================================
    10. CONTACT PAGE STYLING
    ========================================================= */
 .contact-section {
-    padding: 120px 5% 50px; /* Jarak dari atas agar tidak ketutup header */
+    padding: 120px 5% 50px; 
     min-height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
-    background: linear-gradient(to bottom, #ffe6ef, #fff3f3); /* Gradasi Pink lembut ke Putih */
+    background: linear-gradient(to bottom, #ffe6ef, #fff3f3); 
     text-align: center;
-    flex: 1; /* Sticky footer logic */
+    flex: 1; 
     width: 100%;
 }
 
@@ -590,7 +574,6 @@ footer {
     max-width: 800px;
 }
 
-/* Judul "Contact Us" */
 .contact-title {
     font-size: 3.5rem;
     font-weight: 700;
@@ -600,19 +583,16 @@ footer {
     display: inline-block;
     letter-spacing: 2px;
 }
-
-/* Garis Pink dibawah Judul (Aksen Dekorasi) */
 .contact-title::after {
     content: '';
     display: block;
-    width: 60px; /* Panjang garis */
-    height: 5px; /* Tebal garis */
+    width: 60px; 
+    height: 5px; 
     background-color: var(--florytale-pink-solid);
-    margin: 10px auto 0; /* Posisi di tengah */
+    margin: 10px auto 0; 
     border-radius: 5px;
 }
 
-/* Subjudul */
 .contact-subtitle {
     font-size: 1.1rem;
     color: #666;
@@ -620,18 +600,16 @@ footer {
     font-weight: 300;
 }
 
-/* Kartu Kotak Tengah */
 .contact-card {
     background: white;
     padding: 50px 30px;
     border-radius: 20px;
-    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1); /* Bayangan halus */
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1); 
     border: 1px solid rgba(0, 0, 0, 0.05);
     transition: transform 0.3s ease;
 }
-
 .contact-card:hover {
-    transform: translateY(-5px); /* Efek naik sedikit saat dihover */
+    transform: translateY(-5px); 
 }
 
 .inquiry-text {
@@ -655,13 +633,11 @@ footer {
     margin-bottom: 30px;
 }
 
-/* Icon Sosmed di dalam Kartu */
 .contact-social-links {
     display: flex;
     justify-content: center;
     gap: 25px;
 }
-
 .contact-social-links a {
     display: flex;
     justify-content: center;
@@ -674,21 +650,155 @@ footer {
     color: #333;
     transition: all 0.3s ease;
 }
-
 .contact-social-links a:hover {
     background-color: var(--florytale-pink-solid);
     color: white;
     transform: scale(1.1);
 }
-
-/* Khusus Warna WhatsApp saat hover */
 .contact-social-links a.wa-icon:hover {
-    background-color: #25D366; /* Warna Hijau WA */
+    background-color: #25D366; 
 }
 
-/* Responsive untuk HP */
-@media (max-width: 768px) {
-    .contact-title { font-size: 2.5rem; }
-    .phone-number { font-size: 1.8rem; }
+
+/* =========================================================
+   11. MOBILE RESPONSIVE FIX (Khusus HP)
+   ========================================================= 
+   Kode ini HANYA aktif di layar kecil (<768px).
+*/
+@media screen and (max-width: 768px) {
+
+    /* --- 1. PINDAHKAN BACKGROUND (PERBAIKAN UTAMA) --- */
+    
+    /* Matikan background di BODY agar tidak nge-zoom parah */
+    body.home-page {
+        background-image: none !important; 
+        background-color: #f9f9f9; 
+    }
+
+    /* Pasang background di HERO section saja (Agar pas 1 layar HP) */
+    .hero {
+        /* Pastikan nama file ini BENAR ada di folder img */
+        background-image: url('../img/all-mobile.jpg'); 
+        
+        background-size: cover;       /* Memenuhi area hero */
+        background-position: center;  /* Posisi tengah */
+        background-repeat: no-repeat;
+        width: 100%;
+        /* Penting: Paksa tinggi hero pas 1 layar HP */
+        height: 100vh; 
+    }
+
+    /* --- 2. PENYESUAIAN LAYOUT LAINNYA --- */
+    
+    .hero, .about-section, .members, .schedule, .contact-section {
+        padding-left: 20px;
+        padding-right: 20px;
+        padding-top: 80px;     
+        padding-bottom: 40px;  
+    }
+
+    .section-title, .about-title {
+        font-size: 2rem;       
+        margin-bottom: 25px;
+    }
+
+    /* --- 3. HEADER & NAV --- */
+    header {
+        height: 60px;          
+        padding: 0 20px;
+    }
+    .logo img { height: 40px; }
+    
+    .nav-link { font-size: 1.8rem; } 
+
+    /* --- 4. ABOUT US SECTION --- */
+    .about-content-wrapper {
+        flex-direction: column; 
+        gap: 30px;
+    }
+    .about-image, .about-text {
+        min-width: 100%;        
+        text-align: center;     
+    }
+
+    /* >>> TEMPEL KODE BARU DI SINI <<< */
+    .about-text p {
+        font-size: 0.9rem;
+        line-height: 1.5;
+        padding: 0 10px;
+    }
+
+    /* --- 5. MEMBER GRID --- */
+    .member-grid {
+        gap: 10px; /* Jarak antar kartu lebih rapat */
+    }
+
+    .member-card {
+        width: calc(50% - 5px); /* Lebar kartu disesuaikan agar muat 2 kolom rapi */
+        min-width: 0;
+        border-radius: 10px; /* Radius sudut sedikit dikecilkan biar manis */
+    }
+
+    /* 1. UBAH TINGGI FOTO (Agar Memanjang/Portrait) */
+    .member-img {
+        height: 360px; /* Ubah dari 250px ke 330px (atau 350px jika ingin lebih panjang) */
+        object-fit: cover;
+        object-position: top center; /* Fokus ke wajah bagian atas */
+    }
+
+    /* 2. PERKECIL KOTAK PUTIH (INFO) */
+    .member-info {
+        padding: 10px 5px; /* Padding dikurangi drastis (Atas-Bawah 10px, Kiri-Kanan 5px) */
+    }
+
+    .member-info h3 {
+        font-size: 1rem; /* Nama member sedikit dikecilkan agar proporsional */
+        margin-bottom: 2px; /* Jarak ke nama bunga dirapatkan */
+        line-height: 1.2;
+    }
+
+    /* Font Nama Bunga */
+    .flower-name {
+        font-size: 0.8rem; /* Dikecilkan sedikit */
+    }
+    /* --- 6. MODAL POP-UP --- */
+    .modal-content {
+        flex-direction: column; 
+        width: 90%;             
+        max-width: 100%;
+        max-height: 85vh;       
+        overflow-y: auto;       
+    }
+
+    .modal-left {
+        width: 100%;
+        height: 300px;          
+        flex: none;             
+    }
+
+    .modal-right {
+        padding: 20px;
+        width: 100%;
+    }
+
+    .modal-right h2 { font-size: 1.8rem; } 
+    
+    .close-btn {
+        top: 10px;
+        right: 15px;
+        color: white;       
+        text-shadow: 0 0 5px rgba(0,0,0,0.8); 
+    }
+
+    /* --- 7. CONTACT PAGE --- */
+    .contact-title { font-size: 2.2rem; }
     .contact-card { padding: 30px 20px; }
+    .phone-number { font-size: 1.8rem; }
+}
+
+/* HP SANGAT KECIL (<400px) */
+@media screen and (max-width: 400px) {
+    .member-card {
+        width: 100%; /* Balik 1 kolom */
+    }
 }
