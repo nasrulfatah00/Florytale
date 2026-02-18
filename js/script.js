@@ -30,7 +30,7 @@ const membersData = {
         color: "#f1c40f",
         img: "img/risma.jpg",
         imgPop: ["img/rismax.jpg", "img/rismay.jpg", "img/rismaz.jpg"], // Tambah foto lain di dalam kurung siku ini
-        bio: "seperti bunga edelweis,biarkan diriku menjadi sumber kebahagiaan abadi untukmu,hai hai aku rismaa.",
+        bio: "seperti bunga edelweis,biarkan diriku menjadi sumber kebahagiaan abadi untukmu.",
         birthday: "13 July",
         zodiac: "Cancer",
         like: "listening lany, medieval theme dan cat",
@@ -45,7 +45,7 @@ const membersData = {
         color: "#e67e22",
         img: "img/tiara.jpg",
         imgPop: ["img/tiarax.jpg", "img/tiaray.jpg", "img/tiaraz.jpg"],
-        bio: "bagaikan peony yang mekar dan penuh pesona, aku datang membawa cerita dan cinta halo semua aku tiara.",
+        bio: "bagaikan peony yang mekar dan penuh pesona, aku datang membawa cerita dan cinta.",
         birthday: "18 November",
         zodiac: "Scorpio",
         like: "Attack on Titan, Listening Jazz & Sleepaholic",
@@ -60,7 +60,7 @@ const membersData = {
         color: "#27ae60",
         img: "img/ziella.jpg",
         imgPop: ["img/ziellax.jpg", "img/ziellay.jpg", "img/ziellaz.jpg"],
-        bio: "bagaikan bunga mawar hijau yang akan selalu menjadi sudut pandang matamu ke arahku, halow semuanya aku zielaa.",
+        bio: "bagaikan bunga mawar hijau yang akan selalu menjadi sudut pandang matamu ke arahku.",
         birthday: "28 March",
         zodiac: "Aries",
         like: "all about make up and yap about anything",
@@ -278,4 +278,5 @@ document.addEventListener('DOMContentLoaded', () => {
             document.body.classList.remove('drawer-visible');
         });
     });
+
 });
