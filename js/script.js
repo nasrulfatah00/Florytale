@@ -111,7 +111,7 @@ const membersData = {
         like: "Gaming & Watching streamer gaming",
         status: "Hiatus",
         instagram: "https://www.instagram.com/cassiesthr",
-        twitter: "#",
+        twitter: "https://x.com/cassieusz",
         tiktok: "https://www.tiktok.com/@cassiesthr"
     }
 };
@@ -280,3 +280,4 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
 });
+
