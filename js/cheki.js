@@ -118,6 +118,29 @@ document.addEventListener("DOMContentLoaded", () => {
                 totalHarga = groupQty * 35000;
             }
 
+// --- SIAPKAN DATA PESANAN (Merekap Keranjang) ---
+            let jenisChekiVal = "-";
+            let memberListStr = "";
+            let totalQty = 0;
+            let totalHarga = 0;
+
+            if (tipe === "Reguler") {
+                jenisChekiVal = document.getElementById("jenisCheki").value; // Ambil Two Shoot / Solo
+                let memberArr = [];
+                for (const [id, qty] of Object.entries(cart)) {
+                    const member = chekiMembers.find(m => m.id === id);
+                    memberArr.push(`${member.name} (x${qty})`);
+                    totalQty += qty; // Hitung total lembar
+                    totalHarga += (qty * 25000);
+                }
+                memberListStr = memberArr.join(", "); // Gabungkan nama member
+            } else if (tipe === "Group") {
+                jenisChekiVal = "-"; // Group tidak ada pilihan two shot/solo
+                memberListStr = "Group Cheki";
+                totalQty = groupQty;
+                totalHarga = groupQty * 35000;
+            }
+
             // --- PROSES UBAH GAMBAR JADI TEKS & KIRIM DATA ---
             const reader = new FileReader();
             reader.onload = function() {
@@ -126,13 +149,18 @@ document.addEventListener("DOMContentLoaded", () => {
                     email: document.getElementById("email").value,
                     phone: document.getElementById("phone").value,
                     ig: document.getElementById("ig").value || "-",
+                    
+                    // --- DATA YANG DIPECAH ---
                     tipeCheki: tipe,
-                    detailPesanan: detailPesanan,
+                    jenisCheki: jenisChekiVal,
+                    memberPesanan: memberListStr,
+                    jumlahCheki: totalQty,
+                    
                     catatan: document.getElementById("catatan").value || "-",
                     totalHarga: `Rp ${totalHarga.toLocaleString('id-ID')}`,
                     fileName: fileInput.files[0].name,
                     mimeType: fileInput.files[0].type,
-                    fileBase64: reader.result // Gambar dalam bentuk teks Base64
+                    fileBase64: reader.result
                 };
 
                 const scriptURL = 'https://script.google.com/macros/s/AKfycbzOKWeSBTDKEj-hVKQIbendyQUKvN4kJX-6JUN9DrrKm5_DA1Q0hVjjLBpmA2u23vN22g/exec';
