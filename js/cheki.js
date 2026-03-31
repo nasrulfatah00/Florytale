@@ -139,26 +139,29 @@ document.addEventListener("DOMContentLoaded", () => {
                 const scriptURL = 'https://script.google.com/macros/s/AKfycbzOKWeSBTDKEj-hVKQIbendyQUKvN4kJX-6JUN9DrrKm5_DA1Q0hVjjLBpmA2u23vN22g/exec';
 
                 // Kirim data ke Google Script menggunakan Fetch API
-                fetch(scriptURL, {
+fetch(scriptURL, {
                     method: 'POST',
-                    body: JSON.stringify(payload),
-                    mode: 'no-cors' // <--- TAMBAHAN BARU: Memaksa browser mengabaikan blokir CORS
+                    headers: {
+                        'Content-Type': 'text/plain;charset=utf-8',
+                    },
+                    body: JSON.stringify(payload)
                 })
-                .then(() => {
-                    // Karena mode no-cors, kita abaikan pengecekan JSON dan langsung anggap sukses
-                    alert("Yeay! Order Cheki berhasil dikirim. Tunggu konfirmasi dari admin kami ya!");
-                    window.location.reload(); // Refresh halaman setelah sukses
+                .then(response => response.json())
+                .then(data => {
+                    if(data.result === "success") {
+                        alert("Yeay! Order Cheki berhasil dikirim. Tunggu konfirmasi dari admin kami ya!");
+                        window.location.reload(); 
+                    } else {
+                        alert("Yah, ada error dari server Google: " + data.message);
+                        submitBtn.innerHTML = originalBtnText; 
+                        submitBtn.disabled = false;
+                    }
                 })
                 .catch(error => {
-                    alert("Terjadi kesalahan koneksi! Pastikan internet lancar.");
-                    submitBtn.innerHTML = originalBtnText; // Kembalikan tombol
+                    alert("Koneksi gagal / diblokir oleh Google! Cek console browser.");
+                    submitBtn.innerHTML = originalBtnText; 
                     submitBtn.disabled = false;
                 });
-            };
-
-            // Mulai baca file gambar
-            reader.readAsDataURL(fileInput.files[0]);
-        });
     }
     
     // Jalankan satu kali saat halaman dimuat
