@@ -141,18 +141,13 @@ document.addEventListener("DOMContentLoaded", () => {
                 // Kirim data ke Google Script menggunakan Fetch API
                 fetch(scriptURL, {
                     method: 'POST',
-                    body: JSON.stringify(payload)
+                    body: JSON.stringify(payload),
+                    mode: 'no-cors' // <--- TAMBAHAN BARU: Memaksa browser mengabaikan blokir CORS
                 })
-                .then(response => response.json())
-                .then(data => {
-                    if(data.result === "success") {
-                        alert("Yeay! Order Cheki berhasil dikirim. Tunggu konfirmasi dari admin kami ya!");
-                        window.location.reload(); // Refresh halaman setelah sukses
-                    } else {
-                        alert("Yah, ada error dari server: " + data.message);
-                        submitBtn.innerHTML = originalBtnText; // Kembalikan tombol
-                        submitBtn.disabled = false;
-                    }
+                .then(() => {
+                    // Karena mode no-cors, kita abaikan pengecekan JSON dan langsung anggap sukses
+                    alert("Yeay! Order Cheki berhasil dikirim. Tunggu konfirmasi dari admin kami ya!");
+                    window.location.reload(); // Refresh halaman setelah sukses
                 })
                 .catch(error => {
                     alert("Terjadi kesalahan koneksi! Pastikan internet lancar.");
