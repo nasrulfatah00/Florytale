@@ -1,5 +1,5 @@
 /* =========================================
-   LOGIKA HALAMAN ORDER CHEKI (FINAL FIX GOOGLE SHEETS)
+   LOGIKA HALAMAN ORDER CHEKI (FINAL - SPLIT KOLOM)
    ========================================= */
 
 const chekiMembers = [
@@ -75,7 +75,7 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    // 4. MENGIRIM DATA KE GOOGLE SHEETS & DRIVE
+    // 4. MENGIRIM DATA KE GOOGLE SHEETS (DENGAN DATA DIPECAH)
     const orderForm = document.getElementById("chekiOrderForm");
     if(orderForm) {
         orderForm.addEventListener("submit", function(e) {
@@ -98,44 +98,26 @@ document.addEventListener("DOMContentLoaded", () => {
             const submitBtn = document.querySelector(".submit-order-btn");
             const originalBtnText = submitBtn.innerHTML;
             submitBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Sedang Mengirim...';
-            submitBtn.disabled = true; // Matikan tombol agar tidak diklik 2x (Mencegah double order)
+            submitBtn.disabled = true; 
 
-            // --- SIAPKAN DATA PESANAN (Merekap Keranjang) ---
-            let detailPesanan = "";
-            let totalHarga = 0;
-
-            if (tipe === "Reguler") {
-                const jenis = document.getElementById("jenisCheki").value;
-                let memberList = [];
-                for (const [id, qty] of Object.entries(cart)) {
-                    const member = chekiMembers.find(m => m.id === id);
-                    memberList.push(`${member.name} (x${qty})`);
-                    totalHarga += (qty * 25000);
-                }
-                detailPesanan = `Reguler - ${jenis}:\n` + memberList.join(", ");
-            } else if (tipe === "Group") {
-                detailPesanan = `Group Cheki (x${groupQty})`;
-                totalHarga = groupQty * 35000;
-            }
-
-// --- SIAPKAN DATA PESANAN (Merekap Keranjang) ---
+            // --- SIAPKAN DATA PESANAN (Variabel Dipecah) ---
             let jenisChekiVal = "-";
             let memberListStr = "";
             let totalQty = 0;
             let totalHarga = 0;
 
             if (tipe === "Reguler") {
-                jenisChekiVal = document.getElementById("jenisCheki").value; // Ambil Two Shoot / Solo
+                jenisChekiVal = document.getElementById("jenisCheki").value;
                 let memberArr = [];
                 for (const [id, qty] of Object.entries(cart)) {
                     const member = chekiMembers.find(m => m.id === id);
                     memberArr.push(`${member.name} (x${qty})`);
-                    totalQty += qty; // Hitung total lembar
+                    totalQty += qty;
                     totalHarga += (qty * 25000);
                 }
-                memberListStr = memberArr.join(", "); // Gabungkan nama member
+                memberListStr = memberArr.join(", ");
             } else if (tipe === "Group") {
-                jenisChekiVal = "-"; // Group tidak ada pilihan two shot/solo
+                jenisChekiVal = "-";
                 memberListStr = "Group Cheki";
                 totalQty = groupQty;
                 totalHarga = groupQty * 35000;
@@ -160,20 +142,19 @@ document.addEventListener("DOMContentLoaded", () => {
                     totalHarga: `Rp ${totalHarga.toLocaleString('id-ID')}`,
                     fileName: fileInput.files[0].name,
                     mimeType: fileInput.files[0].type,
-                    fileBase64: reader.result
+                    fileBase64: reader.result 
                 };
 
+                // URL Web App Anda yang sudah benar
                 const scriptURL = 'https://script.google.com/macros/s/AKfycbzOKWeSBTDKEj-hVKQIbendyQUKvN4kJX-6JUN9DrrKm5_DA1Q0hVjjLBpmA2u23vN22g/exec';
 
                 // Kirim data ke Google Script
                 fetch(scriptURL, {
                     method: 'POST',
                     body: JSON.stringify(payload),
-                    mode: 'no-cors' // <-- KUNCI PERBAIKAN: Memaksa tembus sistem keamanan Google
+                    mode: 'no-cors' // Tembus blokir Google
                 })
                 .then(() => {
-                    // Karena mode no-cors membuat balasan dari server tidak bisa dibaca,
-                    // kita asumsikan sukses jika data berhasil terlempar.
                     alert("Yeay! Order Cheki berhasil dikirim. Tunggu konfirmasi dari admin kami ya!");
                     window.location.reload(); 
                 })
@@ -188,7 +169,6 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
     
-    // Jalankan satu kali saat halaman dimuat
     updateSummaryUI();
 });
 
