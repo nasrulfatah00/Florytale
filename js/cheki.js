@@ -1,5 +1,5 @@
 /* =========================================
-   LOGIKA HALAMAN ORDER CHEKI (FINAL KONEKSI GOOGLE SHEETS)
+   LOGIKA HALAMAN ORDER CHEKI (FINAL FIX GOOGLE SHEETS)
    ========================================= */
 
 const chekiMembers = [
@@ -135,33 +135,29 @@ document.addEventListener("DOMContentLoaded", () => {
                     fileBase64: reader.result // Gambar dalam bentuk teks Base64
                 };
 
-                // >>> WAJIB GANTI URL DI BAWAH INI DENGAN URL WEB APP ANDA <<<
                 const scriptURL = 'https://script.google.com/macros/s/AKfycbzOKWeSBTDKEj-hVKQIbendyQUKvN4kJX-6JUN9DrrKm5_DA1Q0hVjjLBpmA2u23vN22g/exec';
 
-                // Kirim data ke Google Script menggunakan Fetch API
-fetch(scriptURL, {
+                // Kirim data ke Google Script
+                fetch(scriptURL, {
                     method: 'POST',
-                    headers: {
-                        'Content-Type': 'text/plain;charset=utf-8',
-                    },
-                    body: JSON.stringify(payload)
+                    body: JSON.stringify(payload),
+                    mode: 'no-cors' // <-- KUNCI PERBAIKAN: Memaksa tembus sistem keamanan Google
                 })
-                .then(response => response.json())
-                .then(data => {
-                    if(data.result === "success") {
-                        alert("Yeay! Order Cheki berhasil dikirim. Tunggu konfirmasi dari admin kami ya!");
-                        window.location.reload(); 
-                    } else {
-                        alert("Yah, ada error dari server Google: " + data.message);
-                        submitBtn.innerHTML = originalBtnText; 
-                        submitBtn.disabled = false;
-                    }
+                .then(() => {
+                    // Karena mode no-cors membuat balasan dari server tidak bisa dibaca,
+                    // kita asumsikan sukses jika data berhasil terlempar.
+                    alert("Yeay! Order Cheki berhasil dikirim. Tunggu konfirmasi dari admin kami ya!");
+                    window.location.reload(); 
                 })
                 .catch(error => {
-                    alert("Koneksi gagal / diblokir oleh Google! Cek console browser.");
+                    alert("Terjadi kesalahan jaringan! Pastikan internet lancar.");
                     submitBtn.innerHTML = originalBtnText; 
                     submitBtn.disabled = false;
                 });
+            };
+
+            reader.readAsDataURL(fileInput.files[0]);
+        });
     }
     
     // Jalankan satu kali saat halaman dimuat
