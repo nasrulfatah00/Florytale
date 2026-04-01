@@ -1,6 +1,14 @@
 /* =========================================
-   LOGIKA HALAMAN ORDER CHEKI (FINAL - SPLIT KOLOM)
+   LOGIKA HALAMAN ORDER CHEKI (FINAL - LENGKAP)
+   - Split Kolom Google Sheets
+   - Saklar Buka/Tutup Toko
+   - Notifikasi Sukses Pemanggilan Nama
    ========================================= */
+
+// 🔴 SAKLAR UTAMA: BUKA/TUTUP FORM CHEKI 🔴
+// Ubah menjadi 'true' jika sedang ada event (form terbuka).
+// Ubah menjadi 'false' jika sedang tidak ada event (form ditutup).
+const isFormBuka = true; 
 
 const chekiMembers = [
     { id: "devi", name: "Devi", img: "img/devi.jpg" },
@@ -16,6 +24,19 @@ let groupQty = 1;
 
 document.addEventListener("DOMContentLoaded", () => {
     
+    // --- 0. LOGIKA SAKLAR BUKA/TUTUP ---
+    const orderForm = document.getElementById("chekiOrderForm");
+    const closedMsg = document.getElementById("closedMessageContainer");
+    const memberArea = document.getElementById("memberSelectionArea");
+    
+    if (isFormBuka === false) {
+        // Jika saklar FALSE (Tutup), sembunyikan form & tampilkan pesan maaf
+        if (orderForm) orderForm.style.display = "none";
+        if (memberArea) memberArea.style.display = "none";
+        if (closedMsg) closedMsg.style.display = "block";
+        return; // Hentikan script di sini, tidak perlu meload fungsi form
+    }
+
     // 1. GENERATE KARTU MEMBER KE DALAM GRID
     const gridContainer = document.getElementById("memberGrid");
     if(gridContainer) {
@@ -46,7 +67,6 @@ document.addEventListener("DOMContentLoaded", () => {
             const tipe = this.value;
             const jenisContainer = document.getElementById("jenisChekiContainer");
             const jumlahContainer = document.getElementById("jumlahGroupContainer");
-            const memberArea = document.getElementById("memberSelectionArea");
 
             if (tipe === "Reguler") {
                 if(jenisContainer) jenisContainer.style.display = "block";
@@ -75,8 +95,7 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    // 4. MENGIRIM DATA KE GOOGLE SHEETS (DENGAN DATA DIPECAH)
-    const orderForm = document.getElementById("chekiOrderForm");
+    // 4. MENGIRIM DATA KE GOOGLE SHEETS
     if(orderForm) {
         orderForm.addEventListener("submit", function(e) {
             e.preventDefault();
@@ -155,8 +174,23 @@ document.addEventListener("DOMContentLoaded", () => {
                     mode: 'no-cors' // Tembus blokir Google
                 })
                 .then(() => {
-                    alert("Yeay! Order Cheki berhasil dikirim. Tunggu konfirmasi dari admin kami ya!");
-                    window.location.reload(); 
+                    // --- LOGIKA MUNCULKAN HALAMAN SUKSES ESTETIK ---
+                    const namaPemesan = document.getElementById("nama").value;
+                    
+                    // Sembunyikan Form & Foto
+                    document.getElementById("chekiOrderForm").style.display = "none";
+                    if(document.getElementById("memberSelectionArea")) {
+                        document.getElementById("memberSelectionArea").style.display = "none";
+                    }
+                    
+                    // Masukkan Nama & Munculkan Kotak Sukses
+                    if(document.getElementById("successNameDisplay") && document.getElementById("successMessageContainer")) {
+                        document.getElementById("successNameDisplay").innerText = namaPemesan;
+                        document.getElementById("successMessageContainer").style.display = "block";
+                        
+                        // Scroll otomatis ke kotak sukses
+                        window.scrollTo({ top: document.getElementById("successMessageContainer").offsetTop - 80, behavior: 'smooth' });
+                    }
                 })
                 .catch(error => {
                     alert("Terjadi kesalahan jaringan! Pastikan internet lancar.");
