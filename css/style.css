@@ -751,7 +751,7 @@ footer {
 
     /* 1. UBAH TINGGI FOTO (Agar Memanjang/Portrait) */
     .member-img {
-        height: 360px; /* Ubah dari 250px ke 330px (atau 350px jika ingin lebih panjang) */
+        height: 230px; /* Ubah dari 250px ke 330px (atau 350px jika ingin lebih panjang) */
         object-fit: cover;
         object-position: top center; /* Fokus ke wajah bagian atas */
     }
@@ -775,29 +775,79 @@ footer {
     .modal-content {
         flex-direction: column; 
         width: 90%;             
-        max-width: 100%;
+        max-width: 400px; /* Batasi lebar maksimal di HP agar tidak terlalu lebar di tablet */
         max-height: 85vh;       
-        overflow-y: auto;       
+        overflow-y: auto;
+        border-radius: 15px; /* Sesuaikan sudut melengkung */
     }
 
+    /* 2. Panjangkan area foto di dalam pop-up */
     .modal-left {
         width: 100%;
-        height: 300px;          
+        height: 380px !important; /* Tinggikan foto agar terlihat memanjang/portrait */
         flex: none;             
     }
-
-    .modal-right {
-        padding: 20px;
-        width: 100%;
+    
+    .modal-left img {
+        height: 100% !important; /* Pastikan gambar memenuhi tinggi yang baru */
+        object-fit: cover !important;
+        object-position: top center !important;
     }
 
-    .modal-right h2 { font-size: 1.8rem; } 
+    /* 3. Rapikan padding area teks */
+    .modal-right {
+        padding: 25px 20px 30px; /* Padding atas, kiri-kanan, bawah */
+        width: 100%;
+        text-align: center;
+    }
+
+    /* 4. Rapikan jarak teks Bio */
+    .modal-bio {
+        font-size: 0.95rem;
+        margin-bottom: 25px;
+        line-height: 1.5;
+        padding: 0 10px; /* Beri sedikit jarak kiri-kanan agar teks tidak mentok */
+    }
+
+    /* 5. PERBAIKAN TEKS STATISTIK (Birthday, Zodiac, dll) AGAR RAPI SEJAJAR */
+    .modal-stats {
+        width: 100%;
+        text-align: left;
+        padding-left: 0; /* Reset padding bawaan desktop */
+        display: flex;
+        flex-direction: column;
+        gap: 8px; /* Jarak antar baris statistik */
+    }
+
+    .stat-item {
+        display: flex;
+        align-items: flex-start; /* Sejajarkan di atas jika teks panjang */
+        font-size: 0.95rem;
+        margin-bottom: 5px;
+    }
+
+    .stat-label {
+        font-weight: 700; 
+        width: 85px; /* Lebar label dibuat tetap agar titik duanya sejajar */
+        flex-shrink: 0; /* Mencegah label menyusut */
+        display: inline-block;
+        color: #555;
+    }
     
+    /* Agar isi stat (seperti daftar 'Like') tidak berantakan jika panjang */
+    .stat-item span:not(.stat-label) {
+        flex: 1; 
+        word-wrap: break-word; /* Mencegah teks kepanjangan tembus batas */
+    }
+
+    /* 6. Rapikan posisi tombol Close (X) */
     .close-btn {
         top: 10px;
         right: 15px;
         color: white;       
-        text-shadow: 0 0 5px rgba(0,0,0,0.8); 
+        text-shadow: 0 0 8px rgba(0,0,0,0.8); 
+        font-size: 30px;
+        z-index: 50; /* Pastikan selalu bisa diklik */
     }
 
     /* --- 7. CONTACT PAGE --- */
