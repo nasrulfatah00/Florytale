@@ -960,9 +960,18 @@ footer {
 /* 1. Kunci Foto agar tidak memanjang */
 .cheki-card img {
     width: 100% !important;
-    height: 220px !important;
+    /* TINGGI DI PC: Dibuat lebih panjang agar terlihat seperti foto portrait */
+    height: 280px !important; 
     object-fit: cover !important;
     object-position: top center !important;
+}
+
+/* KHUSUS HP: Sesuaikan tinggi agar tidak terlalu panjang di layar kecil */
+@media screen and (max-width: 768px) {
+    .cheki-card img {
+        /* Kembali ke tinggi yang pas untuk grid 2 kolom di HP */
+        height: 240px !important; 
+    }
 }
 
 /* 2. Pastikan teks dan keseluruhan kontrol berada di tengah (Center) */
