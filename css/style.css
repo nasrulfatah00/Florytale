@@ -1189,3 +1189,39 @@ footer {
         font-size: 1.3rem;
     }
 }
+
+/* =========================================================
+   PERBAIKAN HALAMAN MERCHANDISE (MOBILE FIX)
+   ========================================================= */
+@media screen and (max-width: 768px) {
+    /* Mengecilkan ikon tas belanja */
+    section > .fa-bag-shopping {
+        font-size: 3.5rem !important;
+        margin-bottom: 10px !important;
+    }
+    
+    /* Mengecilkan teks OFFICIAL MERCHANDISE yang terlalu besar */
+    section > h1[style*="4rem"] {
+        font-size: 2.2rem !important; 
+        line-height: 1.2 !important;
+        margin-bottom: 15px !important;
+    }
+    
+    /* Mengecilkan teks Coming Soon */
+    section > h2[style*="2rem"] {
+        font-size: 1.4rem !important; 
+    }
+    
+    /* Menyesuaikan jarak teks deskripsi */
+    section > p[style*="max-width: 500px"] {
+        font-size: 1rem !important;
+        padding: 0 20px !important;
+    }
+
+    /* Menyesuaikan ukuran tombol Kembali ke Home */
+    section > a[style*="margin-top: 40px"] {
+        margin-top: 30px !important;
+        font-size: 0.95rem !important;
+        padding: 12px 25px !important;
+    }
+}
