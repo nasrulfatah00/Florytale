@@ -912,63 +912,104 @@ footer {
     margin-bottom: 50px;
 }
 
-.cheki-card {
-    position: relative;
-    border-radius: 12px;
-    overflow: hidden;
-    background: #fff;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
-    cursor: pointer;
-    border: 2px solid transparent;
-    transition: 0.3s;
-}
-.cheki-card:hover { transform: translateY(-5px); }
-.cheki-card.selected { border-color: var(--florytale-pink-solid); }
+/* =========================================
+   FIX FINAL: CHEKI CARD & BUTTON STYLING
+   ========================================= */
 
+/* 1. Kunci Foto agar tidak memanjang */
 .cheki-card img {
-    width: 100%;
-    height: 220px;
-    object-fit: cover;
-    object-position: top;
-    display: block;
+    width: 100% !important;
+    height: 220px !important;
+    object-fit: cover !important;
+    object-position: top center !important;
 }
 
+/* 2. Pastikan teks dan keseluruhan kontrol berada di tengah (Center) */
 .cheki-card-info {
-    padding: 15px;
+    padding: 15px !important;
+    text-align: center !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+}
+
+/* 3. Posisi Checklist (Rapi di pojok kanan atas) */
+.check-icon {
+    position: absolute !important;
+    top: 12px !important;
+    right: 12px !important;
+    left: auto !important;
+    bottom: auto !important;
+    width: 28px !important;
+    height: 28px !important;
+    background: var(--florytale-pink-solid) !important;
+    color: white !important;
+    z-index: 10 !important;
+    border-radius: 50% !important;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    opacity: 0;
+    transform: scale(0);
+    transition: 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    box-shadow: 0 2px 5px rgba(0,0,0,0.15) !important; /* Tambahan bayangan tipis */
+}
+
+/* Menampilkan Checklist Saat Dipilih */
+.cheki-card.selected .check-icon {
+    opacity: 1 !important;
+    transform: scale(1) !important;
+}
+
+/* 4. Container Tombol Jumlah (Sembunyi secara default) */
+.qty-control {
+    display: none !important; /* Wajib sembunyi di awal */
+    justify-content: center !important;
+    align-items: center !important;
+    gap: 12px !important; /* Jarak antar tombol dan angka */
+    margin-top: 10px !important;
+    width: 100% !important;
+}
+
+/* Munculkan tombol jumlah HANYA saat kartu dipilih (.selected) */
+.cheki-card.selected .qty-control {
+    display: flex !important; 
+}
+
+/* 5. Styling Tombol Plus Minus (Sleek, Halus, Tanpa Garis Tepi) */
+.qty-btn {
+    background-color: rgba(238, 238, 238, 0.8) !important; /* Abu-abu samar transparan */
+    border: none !important; /* Menghilangkan garis tepi luar */
+    color: #444 !important;
+    width: 28px !important;
+    height: 28px !important;
+    border-radius: 6px !important; /* Sudut kotak agak tumpul */
+    cursor: pointer;
+    font-size: 16px !important;
+    font-weight: bold;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    transition: 0.2s ease;
+    outline: none !important;
+    padding: 0 !important; /* Reset padding agar kotak presisi */
+}
+
+/* Efek saat tombol ditekan/hover */
+.qty-btn:hover {
+    background-color: var(--florytale-pink-solid) !important;
+    color: white !important;
+}
+
+/* 6. Styling angka jumlah di tengah */
+.qty-display {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    font-size: 1rem;
+    color: #333;
+    min-width: 20px;
     text-align: center;
 }
-.cheki-card-info h4 { font-size: 1.2rem; margin-bottom: 5px; color: #333; }
-
-/* Checkmark Icon & Quantity Controls (For Regular Cards) */
-.check-icon {
-    position: absolute;
-    top: 10px; right: 10px;
-    background: var(--florytale-pink-solid);
-    color: white;
-    width: 25px; height: 25px;
-    border-radius: 50%;
-    display: flex; justify-content: center; align-items: center;
-    font-size: 14px;
-    opacity: 0; transform: scale(0);
-    transition: 0.3s;
-}
-.cheki-card.selected .check-icon { opacity: 1; transform: scale(1); }
-
-.qty-control {
-    display: none; 
-    justify-content: center; align-items: center;
-    gap: 15px;
-    margin-top: 10px;
-}
-.cheki-card.selected .qty-control { display: flex; }
-.qty-btn {
-    background: #eee; border: none;
-    width: 25px; height: 25px;
-    border-radius: 5px; cursor: pointer;
-    font-weight: bold; transition: 0.2s;
-}
-.qty-btn:hover { background: var(--florytale-pink-solid); color: white; }
-.qty-display { font-weight: bold; font-family: 'Poppins', sans-serif; }
 
 /* --- SUMMARY BOX & PAYMENT --- */
 .section-title-small { font-size: 2rem; display: inline-block; margin-bottom: 20px; }
