@@ -21,6 +21,8 @@ const membersData = {
         like: "Read Manhwa & Watch any exciting series",
         status: "Active", 
         instagram: "https://www.instagram.com/devoxo__",
+        igChannel: "https://www.instagram.com/channel/AbbsFKfc01zBkvgX/",
+        waChannel: "#",
         twitter: "https://x.com/devoxo_",
         tiktok: "https://www.tiktok.com/@devoxo_"
     },
@@ -36,6 +38,8 @@ const membersData = {
         like: "listening lany, medieval theme dan cat",
         status: "Active",
         instagram: "https://www.instagram.com/1dlerismaaa",
+        igChannel: "https://www.instagram.com/channel/AbZLiB6A75yMSPPa/",
+        waChannel: "#",
         twitter: "#",
         tiktok: "https://www.tiktok.com/@1dlerismaaa"
     },
@@ -51,6 +55,8 @@ const membersData = {
         like: "Attack on Titan, Listening Jazz & Sleepaholic",
         status: "Active",
         instagram: "https://www.instagram.com/raawzzn",
+        igChannel: "#",
+        waChannel: "#",
         twitter: "#",
         tiktok: "https://www.tiktok.com/@pjsworld.com"
     },
@@ -66,6 +72,8 @@ const membersData = {
         like: "all about make up and yap about anything",
         status: "Active",
         instagram: "https://www.instagram.com/0nle.vnpaziell",
+        igChannel: "https://www.instagram.com/channel/AbbtRqqUBN0GJbFW/",
+        waChannel: "#",
         twitter: "#",
         tiktok: "https://www.tiktok.com/@0nle.vnpa"
     },
@@ -81,6 +89,8 @@ const membersData = {
         like: "Watching C-Drama & Anything about Kpop",
         status: "Active",
         instagram: "https://www.instagram.com/matchacaaaaaaaaa",
+        igChannel: "#",
+        waChannel: "https://whatsapp.com/channel/0029VbBb4cc11ulUSFnziC2c",
         twitter: "#",
         tiktok: "https://www.tiktok.com/@matchacaaaaaaaaaa"
     },
@@ -96,6 +106,8 @@ const membersData = {
         like: "Gaming & Cat",
         status: "Active",
         instagram: "https://www.instagram.com/lullabyyy_96",
+        igChannel: "#",
+        waChannel: "#",
         twitter: "#",
         tiktok: "#"
     },
@@ -111,6 +123,8 @@ const membersData = {
         like: "Gaming & Watching streamer gaming",
         status: "Hiatus",
         instagram: "https://www.instagram.com/cassiesthr",
+        igChannel: "#",
+        waChannel: "https://whatsapp.com/channel/0029Vb0R789EgGfQ1976Ns2C",
         twitter: "#",
         tiktok: "https://www.tiktok.com/@cassiesthr"
     }
@@ -170,15 +184,31 @@ function openMember(memberId) {
             statusEl.style.color = '#333';
         }
 
-        // 4. Reset & Isi Sosmed (Clickable)
+// 4. Reset & Isi Sosmed (Clickable)
         const socialContainer = document.getElementById('modalSocials');
         socialContainer.innerHTML = ''; 
 
-        // Instagram
+        // Instagram Profile
         if(data.instagram && data.instagram !== '#') {
             socialContainer.innerHTML += `
-                <a href="${data.instagram}" target="_blank" title="Instagram">
+                <a href="${data.instagram}" target="_blank" title="Instagram Profile">
                     <i class="fa-brands fa-instagram"></i>
+                </a>`;
+        }
+        
+        // Instagram Broadcast Channel
+        if(data.igChannel && data.igChannel !== '#') {
+            socialContainer.innerHTML += `
+                <a href="${data.igChannel}" target="_blank" title="Join Instagram Channel!">
+                    <i class="fa-solid fa-tower-broadcast"></i>
+                </a>`;
+        }
+
+        // WhatsApp Channel (FITUR BARU)
+        if(data.waChannel && data.waChannel !== '#') {
+            socialContainer.innerHTML += `
+                <a href="${data.waChannel}" target="_blank" title="Join WhatsApp Channel!" class="wa-channel-link">
+                    <img src="img/wachannel-icon.png" alt="WhatsApp Channel" class="custom-wa-icon">
                 </a>`;
         }
         
