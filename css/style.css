@@ -1225,3 +1225,41 @@ footer {
         padding: 12px 25px !important;
     }
 }
+/* Efek Gradasi untuk Ikon Broadcast Channel Instagram */
+.modal-socials a:hover i.fa-tower-broadcast {
+    background: -webkit-linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    transform: scale(1.15); /* Membesar sedikit saat disorot */
+    transition: all 0.3s ease;
+}
+/* =========================================================
+   STYLING IKON CUSTOM WA CHANNEL
+   ========================================================= */
+
+/* Pengaturan Dasar Gambar Ikon */
+.custom-wa-icon {
+    width: 32px;  /* Diperbesar agar sama dengan ukuran 2rem ikon lainnya */
+    height: 32px;
+    object-fit: contain;
+    vertical-align: -4px; /* Disesuaikan sedikit agar posisinya sejajar sempurna dengan font icon */
+    
+    /* Efek Awal: Matikan warna (abu-abu gelap) agar serasi dengan ikon lain */
+    filter: grayscale(1) brightness(0.2); 
+    opacity: 0.8;
+    
+    transition: all 0.3s ease;
+}
+
+/* Pengaturan Saat Kursor Menyorot (Hover) Tautan */
+.wa-channel-link:hover .custom-wa-icon {
+    /* Efek Hover: Kembalikan warna asli, hidupkan kecerahan */
+    filter: grayscale(0) brightness(1);
+    opacity: 1;
+    transform: scale(1.15); /* Membesar sedikit */
+}
+
+/* Reset hover warna bawaan untuk tautan ini */
+.modal-socials a.wa-channel-link:hover {
+    color: inherit !important;
+}
