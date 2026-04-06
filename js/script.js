@@ -73,7 +73,7 @@ const membersData = {
         status: "Active",
         instagram: "https://www.instagram.com/0nle.vnpaziell",
         igChannel: "https://www.instagram.com/channel/AbbtRqqUBN0GJbFW/",
-        waChannel: "#",
+        waChannel: "https://whatsapp.com/channel/0029VbCqa4o8aKvTOITK5T2b",
         twitter: "#",
         tiktok: "https://www.tiktok.com/@0nle.vnpa"
     },
