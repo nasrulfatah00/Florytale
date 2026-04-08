@@ -146,6 +146,7 @@ document.addEventListener("DOMContentLoaded", () => {
             const reader = new FileReader();
             reader.onload = function() {
                 const payload = {
+                    namaEvent: document.getElementById("eventSelect").value,
                     nama: document.getElementById("nama").value,
                     email: document.getElementById("email").value,
                     phone: document.getElementById("phone").value,
