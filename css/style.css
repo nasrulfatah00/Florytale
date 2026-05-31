@@ -356,7 +356,7 @@ body.drawer-visible li:nth-child(6) .nav-link { animation-delay: 0.35s; }
 .member-card.caca:hover { border-bottom: 5px solid var(--caca-blue); }
 .member-card.tiara:hover { border-bottom: 5px solid var(--tiara-orange); }
 .member-card.cassie:hover { border-bottom: 5px solid var(--cassie-white); }
-.member-card.trainee:hover { border-bottom: 5px solid #df1a04;
+.member-card.trainee:hover { border-bottom: 5px solid #df1a04; }
 
 /* Responsive Member Grid (Tablet) */
 @media (max-width: 992px) {
