@@ -68,6 +68,17 @@
             </div>
 
             <form id="chekiOrderForm">
+                
+                <!-- HONEYPOT ANTI-BOT (JANGAN DIHAPUS) -->
+                <div style="opacity: 0; position: absolute; top: -9999px; left: -9999px;">
+                    <label for="company_website">Company Website</label>
+                    <input type="text" id="company_website" name="company_website" tabindex="-1" autocomplete="off">
+                </div>
+
+                <div class="input-group">
+                    <label>Nama Lengkap</label>
+                    <input type="text" id="nama" required placeholder="Masukkan nama lengkap">
+                </div>
                 <div class="input-group">
                     <label>Nama Lengkap</label>
                     <input type="text" id="nama" required placeholder="Masukkan nama lengkap">
