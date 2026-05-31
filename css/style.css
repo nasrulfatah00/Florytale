@@ -323,15 +323,17 @@ body.drawer-visible li:nth-child(6) .nav-link { animation-delay: 0.35s; }
     text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.15);
 }
 
+/* Batasi lebar maksimal grid agar hanya muat 3 kartu sebaris, sisanya otomatis turun ke bawah */
 .member-grid {
     display: flex;
     flex-wrap: wrap;
     justify-content: center; 
     gap: 30px; 
-    max-width: 1200px;
+    max-width: 900px; /* UBAH: Dipersempit dari 1200px agar mengunci formasi 3-2 */
     margin: 0 auto;
 }
 
+/* Ukuran kartu dikembalikan persis seperti semula (25%) */
 .member-card { 
     background: white; 
     border-radius: 15px; 
@@ -339,8 +341,7 @@ body.drawer-visible li:nth-child(6) .nav-link { animation-delay: 0.35s; }
     box-shadow: 0 5px 15px rgba(0,0,0,0.1); 
     transition: 0.3s;
     cursor: pointer;
-    /* UBAH: Diperbesar agar pas 3 kartu sebaris */
-    width: calc(33.33% - 20px);
+    width: calc(25% - 25px); /* KEMBALI KE UKURAN ASLI */
     min-width: 220px;
     flex-grow: 0;
 }
@@ -350,18 +351,16 @@ body.drawer-visible li:nth-child(6) .nav-link { animation-delay: 0.35s; }
 .member-info h3 { font-size: 1.5rem; margin-bottom: 5px; }
 .flower-name { color: var(--florytale-pink-solid); font-weight: 600; font-style: italic; }
 
-/* Menampilkan hover color khusus lineup formasi baru */
+/* Warna hover khusus lineup formasi baru */
 .member-card.devi:hover { border-bottom: 5px solid var(--devi-purple); }
 .member-card.caca:hover { border-bottom: 5px solid var(--caca-blue); }
 .member-card.tiara:hover { border-bottom: 5px solid var(--tiara-orange); }
 .member-card.cassie:hover { border-bottom: 5px solid var(--cassie-white); }
-/* Warna hover netral untuk slot trainee/rahasia */
 .member-card.trainee:hover { border-bottom: 5px solid #999; }
 
 /* Responsive Member Grid (Tablet) */
 @media (max-width: 992px) {
-    /* UBAH: Layar lebih sempit otomatis menjadi 2 sebaris */
-    .member-card { width: calc(50% - 15px); } 
+    .member-card { width: calc(33.33% - 20px); } 
 }
 /* =========================================================
    8. SCHEDULE & FOOTER
