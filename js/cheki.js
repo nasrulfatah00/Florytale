@@ -1,6 +1,6 @@
 /* =========================================
    LOGIKA HALAMAN ORDER CHEKI (FINAL - LENGKAP)
-   - Split Kolom Google Sheets
+   - Split Kolom Google Sheetfs
    - Saklar Buka/Tutup Toko
    - Notifikasi Sukses Pemanggilan Nama
    ========================================= */
@@ -99,7 +99,25 @@ document.addEventListener("DOMContentLoaded", () => {
     if(orderForm) {
         orderForm.addEventListener("submit", function(e) {
             e.preventDefault();
-            
+
+            // --- 🚨 CEK HONEYPOT (ANTI-BOT) 🚨 ---
+            const honeypot = document.getElementById("company_website").value;
+            if (honeypot !== "") {
+                // Jika terisi, ini bot! Pura-pura tampilkan pesan sukses agar bot pergi.
+                document.getElementById("chekiOrderForm").style.display = "none";
+                if(document.getElementById("memberSelectionArea")) {
+                    document.getElementById("memberSelectionArea").style.display = "none";
+                }
+                const fakeName = document.getElementById("nama").value || "Kak";
+                document.getElementById("successNameDisplay").innerText = fakeName;
+                document.getElementById("successMessageContainer").style.display = "block";
+                window.scrollTo({ top: document.getElementById("successMessageContainer").offsetTop - 80, behavior: 'smooth' });
+                
+                console.log("Bot Spam Terblokir!");
+                return; // Hentikan script, jangan kirim data ke Google!
+            }
+            // --- AKHIR CEK HONEYPOT ---
+           
             const tipe = document.getElementById("tipeCheki").value;
             
             // Validasi Pilihan
@@ -151,6 +169,9 @@ document.addEventListener("DOMContentLoaded", () => {
                     email: document.getElementById("email").value,
                     phone: document.getElementById("phone").value,
                     ig: document.getElementById("ig").value || "-",
+                    
+                   // --- TAMBAHAN DATA HONEYPOT UNTUK BACKEND ---
+                    company_website: document.getElementById("company_website").value,
                     
                     // --- DATA YANG DIPECAH ---
                     tipeCheki: tipe,
