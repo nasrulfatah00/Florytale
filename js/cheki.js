@@ -8,7 +8,7 @@
 // 🔴 SAKLAR UTAMA: BUKA/TUTUP FORM CHEKI 🔴
 // Ubah menjadi 'true' jika sedang ada event (form terbuka).
 // Ubah menjadi 'false' jika sedang tidak ada event (form ditutup).
-const isFormBuka = false; 
+const isFormBuka = true; 
 
 const chekiMembers = [
     { id: "devi", name: "Devi", img: "img/devi.jpg" },
