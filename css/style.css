@@ -339,7 +339,8 @@ body.drawer-visible li:nth-child(6) .nav-link { animation-delay: 0.35s; }
     box-shadow: 0 5px 15px rgba(0,0,0,0.1); 
     transition: 0.3s;
     cursor: pointer;
-    width: calc(25% - 25px);
+    /* UBAH: Diperbesar agar pas 3 kartu sebaris */
+    width: calc(33.33% - 20px);
     min-width: 220px;
     flex-grow: 0;
 }
@@ -349,19 +350,19 @@ body.drawer-visible li:nth-child(6) .nav-link { animation-delay: 0.35s; }
 .member-info h3 { font-size: 1.5rem; margin-bottom: 5px; }
 .flower-name { color: var(--florytale-pink-solid); font-weight: 600; font-style: italic; }
 
+/* Menampilkan hover color khusus lineup formasi baru */
 .member-card.devi:hover { border-bottom: 5px solid var(--devi-purple); }
-.member-card.risma:hover { border-bottom: 5px solid var(--risma-yellow); }
-.member-card.tiara:hover { border-bottom: 5px solid var(--tiara-orange); }
-.member-card.ziella:hover { border-bottom: 5px solid var(--ziella-green); }
 .member-card.caca:hover { border-bottom: 5px solid var(--caca-blue); }
-.member-card.diva:hover { border-bottom: 5px solid var(--diva-red); }
+.member-card.tiara:hover { border-bottom: 5px solid var(--tiara-orange); }
 .member-card.cassie:hover { border-bottom: 5px solid var(--cassie-white); }
+/* Warna hover netral untuk slot trainee/rahasia */
+.member-card.trainee:hover { border-bottom: 5px solid #999; }
 
-/* Responsive Member Grid (Desktop) */
+/* Responsive Member Grid (Tablet) */
 @media (max-width: 992px) {
-    .member-card { width: calc(33.33% - 20px); } 
+    /* UBAH: Layar lebih sempit otomatis menjadi 2 sebaris */
+    .member-card { width: calc(50% - 15px); } 
 }
-
 /* =========================================================
    8. SCHEDULE & FOOTER
    ========================================================= */
