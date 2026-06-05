@@ -12,11 +12,10 @@ const isFormBuka = true;
 
 const chekiMembers = [
     { id: "devi", name: "Devi", img: "img/devi.jpg" },
-    { id: "risma", name: "Risma", img: "img/risma.jpg" },
-    { id: "tiara", name: "Tiara", img: "img/tiara.jpg" },
-    { id: "ziella", name: "Ziella", img: "img/ziella.jpg" },
     { id: "caca", name: "Caca", img: "img/caca.jpg" },
-    { id: "diva", name: "Diva", img: "img/diva.jpg" }
+    { id: "tiara", name: "Tiara", img: "img/tiara.jpg" },
+    { id: "cassie", name: "Cassie", img: "img/cassie.jpg" },
+    { id: "trainee", name: "Jessie", img: "img/teaser-member.jpg" }
 ];
 
 let cart = {}; 
