@@ -955,11 +955,18 @@ footer {
 
 /* --- MEMBER GRID SELECTION --- */
 .member-selection-area h3 { margin-bottom: 15px; color: #333; }
+
 .cheki-member-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr); /* 3 foto sejajar di PC */
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center; /* Kunci utama agar 2 sisa kartu di bawah otomatis ke tengah */
     gap: 20px;
     margin-bottom: 50px;
+}
+
+/* Memaksa ukuran kartu sama persis seperti sebelumnya (Sepertiga area) */
+.cheki-member-grid .cheki-card {
+    width: calc((100% - 40px) / 3) !important;
 }
 
 /* --- FIX TOTAL UNTUK HALAMAN CHEKI --- */
@@ -1173,9 +1180,15 @@ footer {
         padding: 25px 20px;
     }
     
-    .cheki-member-grid { 
-        grid-template-columns: repeat(2, 1fr); 
+.cheki-member-grid { 
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
         gap: 10px; 
+    }
+    
+    .cheki-member-grid .cheki-card {
+        width: calc((100% - 10px) / 2) !important; /* Kembali jadi 2 foto sejajar di HP */
     }
     
     .cheki-card img { height: 180px; }
