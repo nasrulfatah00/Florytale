@@ -94,9 +94,9 @@ const membersData = {
         twitter: "#",
         tiktok: "https://www.tiktok.com/@matchacaaaaaaaaaa"
     },
-    diva: {
-        name: "Diva",
-        flower: "Red Camellia",
+    jessie: {
+        name: "Jessie",
+        flower: "Red Jasmine",
         color: "#df1a04",
         img: "img/diva.jpg",
         imgPop: ["img/divax.jpg", "img/divay.jpg", "img/divaz.jpg"],
