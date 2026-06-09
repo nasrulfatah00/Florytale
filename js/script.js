@@ -121,7 +121,7 @@ const membersData = {
         birthday: "29 November",
         zodiac: "Sagitarius",
         like: "Gaming & Watching streamer gaming",
-        status: "Hiatus",
+        status: "Active",
         instagram: "https://www.instagram.com/cassiesthr",
         igChannel: "#",
         waChannel: "https://whatsapp.com/channel/0029Vb0R789EgGfQ1976Ns2C",
