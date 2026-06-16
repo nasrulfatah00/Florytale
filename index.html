@@ -1,81 +1,348 @@
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Florytale Idol</title>
-    
-    <link rel="icon" href="img/logo-icon.png" type="image/png">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>HACK.STUDIO — Terminal</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Orbitron:wght@400;700&display=swap"
+        rel="stylesheet">
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
 
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;600&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+        body {
+            font-family: 'Share Tech Mono', monospace;
+            background: #000;
+            color: #00ff41;
+            min-height: 100vh;
+            padding: 2rem 1rem;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            background: repeating-linear-gradient(0deg, rgba(0, 255, 65, 0.025) 0px, rgba(0, 255, 65, 0.025) 1px, transparent 1px, transparent 4px);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        canvas#mc {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+            opacity: 0.06;
+        }
+
+        .hk-inner {
+            position: relative;
+            z-index: 1;
+            max-width: 680px;
+            margin: 0 auto;
+        }
+
+        /* HEADER */
+        .hk-header {
+            text-align: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .hk-skull {
+            font-size: 40px;
+            display: block;
+            margin-bottom: 0.4rem;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+
+            0%,
+            100% {
+                opacity: 1
+            }
+
+            50% {
+                opacity: 0.5
+            }
+        }
+
+        .hk-title {
+            font-family: 'Orbitron', monospace;
+            font-size: 22px;
+            font-weight: 700;
+            color: #00ff41;
+            letter-spacing: 4px;
+            text-shadow: 0 0 16px #00ff41;
+            margin-bottom: 4px;
+        }
+
+        .hk-subtitle {
+            font-size: 11px;
+            color: #00882b;
+            letter-spacing: 2px;
+        }
+
+        /* TERMINAL WINDOW */
+        .terminal-window {
+            border: 1px solid #00ff41;
+            border-radius: 4px;
+            overflow: hidden;
+            box-shadow: 0 0 30px rgba(0, 255, 65, 0.12);
+            margin-bottom: 1.5rem;
+        }
+
+        .terminal-bar {
+            background: #001800;
+            padding: 7px 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            border-bottom: 1px solid #00ff41;
+        }
+
+        .dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+        }
+
+        .dot-r {
+            background: #ff5f57;
+        }
+
+        .dot-y {
+            background: #ffbd2e;
+        }
+
+        .dot-g {
+            background: #28ca42;
+        }
+
+        .terminal-title {
+            font-size: 11px;
+            color: #00882b;
+            margin-left: auto;
+            letter-spacing: 1px;
+        }
+
+        .terminal-body {
+            background: #000e00;
+            padding: 1rem 1rem 0.5rem;
+            min-height: 320px;
+            max-height: 400px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+            scroll-behavior: smooth;
+        }
+
+        .terminal-body::-webkit-scrollbar {
+            width: 4px;
+        }
+
+        .terminal-body::-webkit-scrollbar-track {
+            background: #000;
+        }
+
+        .terminal-body::-webkit-scrollbar-thumb {
+            background: #00ff41;
+            border-radius: 2px;
+        }
+
+        .t-line {
+            font-size: 13px;
+            line-height: 1.7;
+            word-break: break-word;
+        }
+
+        .t-line.system {
+            color: #00882b;
+        }
+
+        .t-line.hacker {
+            color: #00ff41;
+        }
+
+        .t-line.hacker::before {
+            content: 'h4k3r@root:~$ ';
+            color: #00cc35;
+        }
+
+        .t-line.empty {
+            min-height: 10px;
+        }
+
+        @keyframes blink {
+
+            0%,
+            100% {
+                opacity: 1
+            }
+
+            50% {
+                opacity: 0
+            }
+        }
+
+
+
+        /* WA CARD */
+        .hk-wa-card {
+            background: #001a00;
+            border: 1px solid #00cc35;
+            border-radius: 4px;
+            padding: 1rem 1.4rem;
+            display: flex;
+            align-items: center;
+            gap: 1.2rem;
+            text-decoration: none;
+            transition: border-color 0.2s, box-shadow 0.2s;
+        }
+
+        .hk-wa-card:hover {
+            border-color: #25D366;
+            box-shadow: 0 0 18px rgba(37, 211, 102, 0.2);
+        }
+
+        .hk-wa-logo {
+            width: 50px;
+            height: 50px;
+            flex-shrink: 0;
+        }
+
+        .hk-wa-label {
+            font-family: 'Orbitron', monospace;
+            font-size: 10px;
+            font-weight: 700;
+            color: #25D366;
+            letter-spacing: 3px;
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .hk-wa-num {
+            font-size: 16px;
+            color: #00ff41;
+            display: block;
+            margin-bottom: 4px;
+            letter-spacing: 1px;
+        }
+
+        .hk-wa-hint {
+            font-size: 10px;
+            color: #00882b;
+        }
+
+        /* FOOTER */
+        .hk-footer {
+            text-align: center;
+            margin-top: 1.5rem;
+            font-size: 10px;
+            color: #003d10;
+            letter-spacing: 1px;
+        }
+
+        .hk-blink {
+            animation: blink 1s step-end infinite;
+        }
+    </style>
 </head>
-<body class="home-page"> 
 
-    <header>
-        <div class="logo">
-            <a href="/"><img src="img/ft-logo.png" alt="Florytale Logo"></a>
-        </div>
-        
-        <div class="header-right">
-            <div class="social-icons">
-                <a href="https://instagram.com/florytale.idol" target="_blank"><i class="fa-brands fa-instagram"></i></a>
-                <a href="https://twitter.com/florytale_idol" target="_blank"><i class="fa-brands fa-x-twitter"></i></a>
-                <a href="https://youtube.com/@Florytale-idol" target="_blank"><i class="fa-brands fa-youtube"></i></a>
-                <a href="https://tiktok.com/@florytale.idol" target="_blank"><i class="fa-brands fa-tiktok"></i></a>
+<body>
+
+    <canvas id="mc"></canvas>
+
+    <div class="hk-inner">
+
+        <header class="hk-header">
+            <span class="hk-skull">💀</span>
+            <h1 class="hk-title">MSBREEWW-777</h1>
+            <p class="hk-subtitle">[ TERMINAL AKTIF &bull; ENKRIPSI AES-256 &bull; AMAN ]</p>
+        </header>
+
+        <div class="terminal-window">
+            <div class="terminal-bar">
+                <span class="dot dot-r"></span>
+                <span class="dot dot-y"></span>
+                <span class="dot dot-g"></span>
+                <span class="terminal-title">hack.studio &mdash; bash &mdash; 80&times;24</span>
             </div>
 
-            <div class="drawer__btn" id="menu-trigger">
-                <span></span>
-                <span></span>
-                <span></span>
+            <div class="terminal-body" id="tBody">
+                <div class="t-line system">[ SYS ] Koneksi terenkripsi berhasil dibuat...</div>
+                <div class="t-line system">[ SYS ] Identitas tersembunyi. Lokasi dirahasiakan.</div>
+                <div class="t-line empty"></div>
+                <div class="t-line hacker">Hallo Mas Nasrulll</div>
+                <div class="t-line hacker">kenalin gua MSBREEWW-777</div>
+                <div class="t-line hacker">Web mu open source ya mas wkwkwkwk</div>
+                <div class="t-line hacker">Kalo ngoding jangan lupa ngopi</div>
+                <div class="t-line hacker">Butuh bantuan untuk perbaikan? Hubungi kami via WhatsApp di bawah.</div>
+                <div class="t-line empty"></div>
             </div>
         </div>
-    </header>
 
-    <nav id="globalNavi" class="full-screen-nav">
-        <ul class="nav-list">
-           <li><a href="/#about" class="nav-link">ABOUT US <span class="sub-text">Tentang Kami</span></a></li>
-           <li><a href="members.html" class="nav-link">MEMBER <span class="sub-text">Our Flowers</span></a></li>
-           <li><a href="schedule.html" class="nav-link">SCHEDULE <span class="sub-text">Jadwal</span></a></li>
-           <li><a href="cheki" class="nav-link">CHEKI <span class="sub-text">Pre Order</span></a></li>
-           <li><a href="merch.html" class="nav-link">MERCH <span class="sub-text">Official Merchandise</span></a></li>
-           <li><a href="contact.html" class="nav-link">CONTACT <span class="sub-text">Hubungi Kami</span></a></li>
-        </ul>
-    </nav>
-
-    <section id="home" class="hero">
-        <a href="#about" class="hero-btn">ABOUT US</a>
-    </section>
-
-    <section id="about" class="about-section">
-        <div class="about-container">
-            <h2 class="about-title">About Us</h2>
-            
-            <div class="about-content-wrapper">
-                <div class="about-image">
-                    <img src="img/all.jpg" alt="About Florytale">
-                </div>
-                
-                <div class="about-text">
-                    <p>
-                        Hi! We are Florytale, a local idol group from Tegal, Central Java that debuted on November 5, 2023. Our name combines "Flory" and "Tale" to tell the story of blooming flowers.  
-                        Together with our members, we are here to brighten your day, just like our motto: "Mewarnai hari-harimu seindah bunga bermekaran".
-                        <br><br>
-                        Right now, we are super excited because we are preparing to release our very first original song! 
-                        We really hope this debut track marks the start of a lovely journey and brings positive vibes to everyone who listens. Stay tuned, it’s coming soon!
-                    </p>
-                </div>
+        <a href="https://wa.me/628816771322" class="hk-wa-card" target="_blank">
+            <svg class="hk-wa-logo" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg"
+                aria-label="WhatsApp">
+                <circle cx="24" cy="24" r="24" fill="#25D366" />
+                <path
+                    d="M24 10C16.27 10 10 16.27 10 24c0 2.48.67 4.8 1.83 6.8L10 38l7.4-1.79A13.93 13.93 0 0 0 24 38c7.73 0 14-6.27 14-14S31.73 10 24 10zm0 25.4c-2.14 0-4.14-.58-5.86-1.58l-.42-.25-4.35 1.05 1.08-4.23-.27-.44A11.37 11.37 0 0 1 12.6 24c0-6.29 5.11-11.4 11.4-11.4S35.4 17.71 35.4 24 30.29 35.4 24 35.4zm6.26-8.55c-.34-.17-2.02-1-2.34-1.11-.32-.12-.55-.17-.78.17-.23.34-.89 1.11-1.09 1.34-.2.23-.4.26-.74.09-.34-.17-1.44-.53-2.74-1.69-1.01-.9-1.7-2.01-1.9-2.35-.2-.34-.02-.52.15-.69.15-.15.34-.4.51-.6.17-.2.23-.34.34-.57.11-.23.06-.43-.03-.6-.09-.17-.78-1.88-1.07-2.57-.28-.68-.57-.59-.78-.6l-.67-.01c-.23 0-.6.09-.92.43-.32.34-1.2 1.17-1.2 2.85 0 1.68 1.23 3.3 1.4 3.53.17.23 2.42 3.7 5.86 5.19.82.35 1.46.56 1.96.72.82.26 1.57.22 2.16.13.66-.1 2.02-.83 2.31-1.62.28-.8.28-1.48.2-1.62-.09-.14-.32-.23-.66-.4z"
+                    fill="white" />
+            </svg>
+            <div>
+                <span class="hk-wa-label">HUBUNGI KAMI &bull; WHATSAPP</span>
+                <span class="hk-wa-num">0881-6771-322</span>
+                <span class="hk-wa-hint">[ KLIK UNTUK CHAT LANGSUNG &bull; RESPON CEPAT ]</span>
             </div>
-        </div>
-        </section>
+        </a>
 
-    <footer>
-        &copy; 2026 Florytale. All Rights Reserved.
-    </footer>
+        <footer class="hk-footer">
+            <p style="margin-top:1.5rem">&copy; 2026 MSBREEWW-777 &bull; SEMUA DATA DIENKRIPSI &bull; <span
+                    class="hk-blink">&#9646;</span></p>
+            <p style="margin-top:4px">[ SISTEM TERLINDUNGI &bull; AKSES TIDAK SAH AKAN DILACAK ]</p>
+        </footer>
 
-    <script src="js/script.js"></script>
+    </div>
+
+    <script>
+        /* Matrix Rain */
+        const canvas = document.getElementById('mc');
+        const ctx = canvas.getContext('2d');
+        function resize() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+        resize();
+        window.addEventListener('resize', resize);
+        const chars = '01アイウエオカキクケコサシスセソ';
+        const fs = 13;
+        let drops = Array(Math.floor(canvas.width / fs)).fill(1);
+        function draw() {
+            ctx.fillStyle = 'rgba(0,0,0,0.05)';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            ctx.fillStyle = '#00ff41';
+            ctx.font = fs + 'px monospace';
+            drops.forEach((y, i) => {
+                ctx.fillText(chars[Math.floor(Math.random() * chars.length)], i * fs, y * fs);
+                if (y * fs > canvas.height && Math.random() > 0.975) drops[i] = 0;
+                drops[i]++;
+            });
+        }
+        setInterval(draw, 55);
+    </script>
 
 </body>
+
 </html>
