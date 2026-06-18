@@ -15,7 +15,7 @@ const chekiMembers = [
     { id: "caca", name: "Caca", img: "img/caca.jpg" },
     { id: "tiara", name: "Tiara", img: "img/tiara.jpg" },
     { id: "cassie", name: "Cassie", img: "img/cassie.jpg" },
-    { id: "trainee", name: "Jessie", img: "img/teaser-member.jpg" }
+    { id: "trainee", name: "Jessie", img: "img/jessie.jpg" }
 ];
 
 let cart = {}; 
