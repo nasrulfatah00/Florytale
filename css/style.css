@@ -27,15 +27,21 @@
    ========================================================= */
 * {
 
-    html, body { 
-    margin: 0; 
-    scroll-behavior: smooth; 
+/* --- OVERRIDE FINAL FOOTER --- */
+html, body {
+    height: auto !important; /* Membatalkan secara paksa batas tinggi yang tertinggal */
+    min-height: 100vh !important; /* Memastikan selalu minimal setinggi layar */
 }
 
 body {
-    background-color: #f9f9f9;
-    color: #333;
-    
+    display: flex !important;
+    flex-direction: column !important;
+}
+
+footer {
+    margin-top: auto !important; /* Mendorong footer kuat-kuat ke dasar konten */
+    margin-bottom: 0 !important;
+}
     /* STICKY FOOTER SETUP */
     display: flex;
     flex-direction: column;
@@ -1289,8 +1295,9 @@ footer {
    SONG RELEASE SECTION (HOME PAGE)
    ========================================================= */
 .release-section {
+    min-height: 100vh; /* Mengembalikan tinggi penuh satu layar */
     background-color: #ffffff;
-    padding: 80px 5% 20px; /* Angka 20px di akhir untuk mengurangi jarak bawah */
+    padding: 80px 5% 20px;
     display: flex;
     align-items: center;
     justify-content: center;
