@@ -1276,3 +1276,159 @@ footer {
 .modal-socials a.wa-channel-link:hover {
     color: inherit !important;
 }
+
+/* =========================================================
+   SONG RELEASE SECTION (HOME PAGE)
+   ========================================================= */
+.release-section {
+    min-height: 100vh; /* Membuatnya setinggi 1 layar penuh */
+    background-color: #ffffff;
+    padding: 100px 5%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.release-container {
+    max-width: 1200px;
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 60px;
+}
+
+.release-left {
+    flex: 1;
+    min-width: 300px;
+}
+
+.release-title {
+    font-size: 3.5rem;
+    font-weight: 700;
+    color: #222;
+    margin-bottom: 20px;
+    line-height: 1.2;
+}
+
+.release-desc {
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.1rem;
+    color: #555;
+    line-height: 1.7;
+    margin-bottom: 30px;
+    text-align: justify;
+}
+
+.release-buttons {
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.btn-outline {
+    padding: 10px 25px;
+    border: 2px solid #222;
+    border-radius: 30px;
+    color: #222;
+    font-family: 'Poppins', sans-serif;
+    font-size: 1rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.btn-outline:hover {
+    background-color: #222;
+    color: #fff;
+}
+
+.release-right {
+    flex: 1;
+    min-width: 300px;
+    display: flex;
+    justify-content: center;
+}
+
+.album-card {
+    background: #fff;
+    text-align: center;
+    width: 100%;
+    max-width: 450px;
+}
+
+.album-card img {
+    width: 100%;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+    margin-bottom: 20px;
+}
+
+.track-details h4 {
+    font-size: 1.2rem;
+    color: #222;
+    margin-bottom: 5px;
+}
+
+.release-date {
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.9rem;
+    color: #777;
+    margin-bottom: 15px;
+}
+
+.audio-controls {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+}
+
+.play-preview-btn {
+    background-color: #f1c40f; /* Warna kuning play button sesuai referensi */
+    color: #111;
+    border: none;
+    padding: 8px 20px;
+    border-radius: 5px;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    font-size: 0.95rem;
+    cursor: pointer;
+    transition: 0.3s;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.play-preview-btn:hover {
+    background-color: #d4ac0d;
+    transform: scale(1.05);
+}
+
+.audio-time {
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.9rem;
+    color: #555;
+    font-weight: 600;
+}
+
+/* RESPONSIVE MOBILE FIX (Pastikan ditaruh di dalam @media screen yang sudah ada atau buat baru) */
+@media screen and (max-width: 768px) {
+    .release-section {
+        padding-top: 100px;
+    }
+    .release-container {
+        flex-direction: column;
+        text-align: center;
+        gap: 40px;
+    }
+    .release-title {
+        font-size: 2.5rem;
+    }
+    .release-desc {
+        text-align: center;
+    }
+    .release-buttons {
+        justify-content: center;
+    }
+}
