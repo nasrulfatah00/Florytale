@@ -26,15 +26,12 @@
    2. GLOBAL STYLES
    ========================================================= */
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: "Fredoka", sans-serif;
-}
 
-html { scroll-behavior: smooth; }
-ul { list-style: none; }
-a { text-decoration: none; color: inherit; transition: 0.3s; }
+   html, body { 
+    height: 100%; 
+    margin: 0; 
+    scroll-behavior: smooth; 
+}
 
 body {
     background-color: #f9f9f9;
@@ -45,6 +42,15 @@ body {
     flex-direction: column;
     min-height: 100vh; 
 }
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Fredoka", sans-serif;
+}
+
+html { scroll-behavior: smooth; }
+ul { list-style: none; }
+a { text-decoration: none; color: inherit; transition: 0.3s; }
 
 /* Khusus Background Halaman Home */
 body.home-page {
@@ -394,7 +400,8 @@ footer {
     padding: 20px; 
     font-size: 0.9rem; 
     width: 100%; 
-    margin-top: auto; /* Mendorong footer ke batas terbawah */
+    margin-top: auto; /* Mendorong footer ke ujung bawah layar */
+    flex-shrink: 0; /* Mengunci footer agar tidak menyusut ditarik oleh elemen lain */
 }
 
 /* =========================================================
@@ -1301,6 +1308,7 @@ footer {
 .release-left {
     flex: 1;
     min-width: 300px;
+    padding-left: 60px; /* Angka ini menggeser teks ke kanan. Silakan perbesar/perkecil jika dirasa kurang pas */
 }
 
 .release-title {
@@ -1418,5 +1426,8 @@ footer {
     }
     .release-buttons {
         justify-content: center;
+    }
+   .release-left {
+        padding-left: 0; /* Mengembalikan posisi teks ke tengah saat di HP */
     }
 }
