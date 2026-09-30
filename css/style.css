@@ -26,10 +26,16 @@
    2. GLOBAL STYLES
    ========================================================= */
 * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Fredoka", sans-serif;
+}
 
-/* --- OVERRIDE FINAL FOOTER --- */
+/* --- OVERRIDE FINAL FOOTER & BODY --- */
 html, body { 
-    height: 100%; 
+    height: auto !important; 
+    min-height: 100vh !important; 
     margin: 0; 
     scroll-behavior: smooth; 
 }
@@ -37,24 +43,10 @@ html, body {
 body {
     background-color: #f9f9f9;
     color: #333;
-    
-    /* STICKY FOOTER SETUP */
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh; 
-}
-    /* STICKY FOOTER SETUP */
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh; 
-}
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: "Fredoka", sans-serif;
+    display: flex !important;
+    flex-direction: column !important;
 }
 
-html { scroll-behavior: smooth; }
 ul { list-style: none; }
 a { text-decoration: none; color: inherit; transition: 0.3s; }
 
@@ -407,8 +399,9 @@ footer {
     padding: 20px; 
     font-size: 0.9rem; 
     width: 100%; 
-    margin-top: auto; /* Mendorong footer ke ujung bawah layar */
-    flex-shrink: 0; /* Mengunci footer agar tidak menyusut */
+    margin-top: auto !important; /* Mendorong footer kuat-kuat ke dasar konten */
+    margin-bottom: 0 !important;
+    flex-shrink: 0;
 }
 
 /* =========================================================
