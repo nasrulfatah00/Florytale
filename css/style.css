@@ -1304,7 +1304,7 @@ footer {
 }
 
 .release-title {
-    font-size: 3.5rem;
+    font-size: 2.3rem; 
     font-weight: 700;
     color: #222;
     margin-bottom: 20px;
@@ -1354,7 +1354,7 @@ footer {
     background: #fff;
     text-align: center;
     width: 100%;
-    max-width: 450px;
+    max-width: 300px; /* Dikecilkan dari 450px menjadi 300px */
 }
 
 .album-card img {
@@ -1385,8 +1385,8 @@ footer {
 }
 
 .play-preview-btn {
-    background-color: #f1c40f; /* Warna kuning play button sesuai referensi */
-    color: #111;
+    background-color: var(--florytale-pink-solid); /* Warna pink senada */
+    color: white; /* Teks diubah putih agar kontras */
     border: none;
     padding: 8px 20px;
     border-radius: 5px;
@@ -1401,7 +1401,7 @@ footer {
 }
 
 .play-preview-btn:hover {
-    background-color: #d4ac0d;
+    background-color: #e07a96; 
     transform: scale(1.05);
 }
 
