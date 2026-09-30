@@ -309,3 +309,44 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 });
+
+// --- C. LOGIC AUDIO PLAYER (KANVAS MUSIM SEMI) ---
+    const playBtn = document.querySelector('.play-preview-btn');
+    const audio = document.getElementById('previewAudio');
+    const timeDisplay = document.querySelector('.audio-time');
+
+    if (playBtn && audio) {
+        // Fungsi Play / Pause
+        playBtn.addEventListener('click', () => {
+            if (audio.paused) {
+                audio.play();
+                playBtn.innerHTML = '<i class="fa-solid fa-pause"></i> Pause Preview';
+            } else {
+                audio.pause();
+                playBtn.innerHTML = '<i class="fa-solid fa-play"></i> Play Preview';
+            }
+        });
+
+        // Update angka timer berjalan (0:00 / 0:30)
+        audio.addEventListener('timeupdate', () => {
+            const current = Math.floor(audio.currentTime);
+            // Anggap durasi 30 detik jika metadata belum termuat
+            const duration = isNaN(audio.duration) ? 30 : Math.floor(audio.duration); 
+            
+            const formatTime = (time) => {
+                const minutes = Math.floor(time / 60);
+                const seconds = Math.floor(time % 60);
+                return `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
+            };
+
+            if (timeDisplay) {
+                timeDisplay.innerText = `${formatTime(current)} / ${formatTime(duration)}`;
+            }
+        });
+
+        // Kembalikan ke tampilan awal saat lagu selesai diputar
+        audio.addEventListener('ended', () => {
+            playBtn.innerHTML = '<i class="fa-solid fa-play"></i> Play Preview';
+            if (timeDisplay) timeDisplay.innerText = "0:00 / 0:30";
+        });
+    }
