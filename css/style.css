@@ -393,8 +393,8 @@ footer {
     text-align: center; 
     padding: 20px; 
     font-size: 0.9rem; 
-    width: 100%; /* Memaksa latar hitam full 100% dari kiri ke kanan */
-    margin-top: auto; /* Mendorong footer agar selalu mentok di dasar halaman */
+    width: 100%; 
+    margin-top: auto; /* Mendorong footer ke batas terbawah */
 }
 
 /* =========================================================
@@ -1282,9 +1282,8 @@ footer {
    SONG RELEASE SECTION (HOME PAGE)
    ========================================================= */
 .release-section {
-    min-height: 100vh; /* Membuatnya setinggi 1 layar penuh */
     background-color: #ffffff;
-    padding: 100px 5%;
+    padding: 80px 5% 40px; /* Mengurangi padding agar tidak terlalu renggang ke bawah */
     display: flex;
     align-items: center;
     justify-content: center;
@@ -1351,18 +1350,19 @@ footer {
     justify-content: center;
 }
 
-.album-card img {
+.album-card {
+    background: #fff;
+    text-align: center;
     width: 100%;
-    border-radius: 15px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.15);
-    margin-bottom: 15px; /* Jarak antara foto dan tombol yang pas */
+    max-width: 250px; /* Ukuran diperkecil dari 300px menjadi 250px */
+    margin: 0 auto;
 }
 
 .album-card img {
     width: 100%;
     border-radius: 15px;
     box-shadow: 0 10px 30px rgba(0,0,0,0.15);
-    margin-bottom: 20px;
+    margin-bottom: 15px;
 }
 
 .audio-controls {
