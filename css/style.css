@@ -37,11 +37,6 @@ body {
     display: flex !important;
     flex-direction: column !important;
 }
-
-footer {
-    margin-top: auto !important; /* Mendorong footer kuat-kuat ke dasar konten */
-    margin-bottom: 0 !important;
-}
     /* STICKY FOOTER SETUP */
     display: flex;
     flex-direction: column;
@@ -399,15 +394,9 @@ body.drawer-visible li:nth-child(6) .nav-link { animation-delay: 0.35s; }
 .date-box span { font-size: 1.8rem; font-weight: bold; display: block; line-height: 1; }
 .date-box small { font-size: 0.9rem; text-transform: uppercase; }
 
-footer { 
-    background-color: #222; 
-    color: #888; 
-    text-align: center; 
-    padding: 20px; 
-    font-size: 0.9rem; 
-    width: 100%; 
-    margin-top: auto; /* Mendorong footer ke ujung bawah layar */
-    flex-shrink: 0; /* Mengunci footer agar tidak menyusut ditarik oleh elemen lain */
+footer {
+    margin-top: auto !important; /* Mendorong footer kuat-kuat ke dasar konten */
+    margin-bottom: 0 !important;
 }
 
 /* =========================================================
