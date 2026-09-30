@@ -393,7 +393,8 @@ footer {
     text-align: center; 
     padding: 20px; 
     font-size: 0.9rem; 
-    margin-top: 0; 
+    width: 100%; /* Memaksa latar hitam full 100% dari kiri ke kanan */
+    margin-top: auto; /* Mendorong footer agar selalu mentok di dasar halaman */
 }
 
 /* =========================================================
@@ -1350,11 +1351,11 @@ footer {
     justify-content: center;
 }
 
-.album-card {
-    background: #fff;
-    text-align: center;
+.album-card img {
     width: 100%;
-    max-width: 300px; /* Dikecilkan dari 450px menjadi 300px */
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+    margin-bottom: 15px; /* Jarak antara foto dan tombol yang pas */
 }
 
 .album-card img {
@@ -1362,19 +1363,6 @@ footer {
     border-radius: 15px;
     box-shadow: 0 10px 30px rgba(0,0,0,0.15);
     margin-bottom: 20px;
-}
-
-.track-details h4 {
-    font-size: 1.2rem;
-    color: #222;
-    margin-bottom: 5px;
-}
-
-.release-date {
-    font-family: 'Poppins', sans-serif;
-    font-size: 0.9rem;
-    color: #777;
-    margin-bottom: 15px;
 }
 
 .audio-controls {
