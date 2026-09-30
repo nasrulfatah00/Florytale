@@ -290,15 +290,16 @@ body.drawer-visible li:nth-child(6) .nav-link { animation-delay: 0.35s; }
 .hero-btn:hover { background-color: white; color: var(--florytale-pink-solid); }
 
 .about-section {
-    min-height: 100vh;
+    /* min-height: 100vh; dihapus agar tingginya menyesuaikan isi konten */
     background-color: rgba(255, 255, 255, 0.9);
-    padding: 100px 5% 50px;
+    padding: 40px 5% 80px; /* Padding atas dikurangi drastis agar lebih dekat dengan lagu */
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center; 
-    flex: 1; 
     width: 100%;
+    
+    /* MANTRA BARU: Agar saat di-klik dari menu, posisinya berhenti pas di bawah header */
+    scroll-margin-top: 80px; 
 }
 .about-container { max-width: 1200px; width: 100%; }
 .about-title { font-size: 3rem; font-weight: bold; color: #000; margin-bottom: 40px; }
@@ -1289,7 +1290,7 @@ footer {
    ========================================================= */
 .release-section {
     background-color: #ffffff;
-    padding: 80px 5% 40px; /* Mengurangi padding agar tidak terlalu renggang ke bawah */
+    padding: 80px 5% 20px; /* Angka 20px di akhir untuk mengurangi jarak bawah */
     display: flex;
     align-items: center;
     justify-content: center;
