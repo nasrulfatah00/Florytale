@@ -1380,8 +1380,8 @@ footer {
 }
 
 .play-preview-btn {
-    background-color: var(--florytale-pink-solid); /* Warna pink senada */
-    color: white; /* Teks diubah putih agar kontras */
+    background-color: var(--florytale-pink-solid);
+    color: white;
     border: none;
     padding: 8px 20px;
     border-radius: 5px;
@@ -1393,6 +1393,10 @@ footer {
     display: flex;
     align-items: center;
     gap: 8px;
+    
+    /* --- TAMBAHAN KUNCI --- */
+    white-space: nowrap; /* Melarang keras teks melipat ke bawah */
+    flex-shrink: 0; /* Mencegah tombol menyusut / tergencet */
 }
 
 .play-preview-btn:hover {
@@ -1405,6 +1409,10 @@ footer {
     font-size: 0.9rem;
     color: #555;
     font-weight: 600;
+    
+    /* --- TAMBAHAN KUNCI --- */
+    white-space: nowrap; /* Melarang angka timer turun ke bawah */
+    flex-shrink: 0; 
 }
 
 /* RESPONSIVE MOBILE FIX (Pastikan ditaruh di dalam @media screen yang sudah ada atau buat baru) */
